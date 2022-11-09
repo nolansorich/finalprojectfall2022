@@ -4,7 +4,7 @@ flying bird
 
 
 Description
-a bird that flies around pole
+a bird that flies around poles
 
 Getting Started
 Dependencies
