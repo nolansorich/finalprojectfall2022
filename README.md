@@ -24,17 +24,17 @@ command to run if program contains helper info
 Authors
 Contributors names and contact info
 
-ex. Nolan SOrich
-ex. nolan.sorich232BCP.ORG
+ex. Nolan Sorich
+ex. nolan.sorich23@bcp.org
 
 Version History
 0.1
 Initial Release
 License
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+This project is licensed under the MIT License - see the LICENSE.md file for details
 
 Acknowledgments
 Inspiration, code snippets, etc.
 
 PyGame
-Automate The Boring Stuff
+Me
