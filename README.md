@@ -37,4 +37,4 @@ Acknowledgments
 Inspiration, code snippets, etc.
 
 PyGame
-Me
+flappy bird`
