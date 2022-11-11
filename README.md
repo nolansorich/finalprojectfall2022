@@ -9,18 +9,17 @@ a bird that flies around poles
 Getting Started
 Dependencies
 Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-ex. Python 3.x, Pygame, etc.
+ex. Python 3.x, Pygame,
 Installing
-How/where to download your program
+pip install pygame
 Any modifications needed to be made to files/folders
 Executing program
 How to run the program
-Step-by-step bullets
+
 code blocks for commands
 Help
 Any advise for common problems or issues.
-
-command to run if program contains helper info
+sometimes when you hit a pole the bird will look weird. Some advice for this is to not hit the pole.
 Authors
 Contributors names and contact info
 
