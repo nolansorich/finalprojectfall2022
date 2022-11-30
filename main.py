@@ -23,9 +23,10 @@ import random
 
 # content from kids can code: http://kidscancode.org/blog/
 
+# Mr.Cozort's code
+#import the libraries
 
 vec = pg.math.Vector2
-# game settings 
 WIDTH = 1400
 HEIGHT = 720
 FPS = 30
@@ -141,6 +142,7 @@ plat11 = Platform(1100, 600, 50, 900)
 platr = Platform(0, 0, 10, 720)
 platrr = Platform(1390, 10, 10, 720)
 platrrr = Platform(0, 0, 1400, 10)
+other = Platform(1300, 400, 50, 100)
 #adds player to all_sprites
 all_sprites.add(player)
 #adds platforms to all_sprites
@@ -158,6 +160,7 @@ all_sprites.add(plat11)
 all_sprites.add(platr)
 all_sprites.add(platrr)
 all_sprites.add(platrrr)
+all_sprites.add(other)
  #adds plats to all_platforms
 all_platforms.add(plat)
 all_platforms.add(plat2)
@@ -173,6 +176,7 @@ all_platforms.add(plat11)
 all_platforms.add(platr)
 all_platforms.add(platrr)
 all_platforms.add(platrrr)
+all_platforms.add(other)
 #adds pltforms to sprites and platform group
 all_sprites.add(platforms)
 all_platforms.add(platforms)
@@ -229,14 +233,14 @@ while running:
         screen.fill(BLUE)
 #if the players health is below 0 a message will show up on the screen saying the game is over
     if player.health > 0:
-        draw_text("HEALTH: " + str(player.health), 22, RED, WIDTH / 2.5, HEIGHT / 20)
+        draw_text("HEALTH: " + str(player.health), 22, RED, WIDTH / 2.5, HEIGHT / 
+20)
     elif player.health < 0:
-        draw_text("YOU LOST!! " + str(player.health), 300, OTHER, WIDTH / 1.5, HEIGHT / 20)
+        draw_text("YOU LOST!! " + str(player.health), 300, OTHER, WIDTH / 1.5, 
+HEIGHT / 20)
     # draw all sprites
     all_sprites.draw(screen)
     
     # buffer - after drawing everything, flip display
     pg.display.flip()
-
-
-    pg.quit()
+pg.quit()
