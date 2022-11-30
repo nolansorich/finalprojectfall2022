@@ -3,7 +3,7 @@ my final project is flying bird
 '''
 
 '''
-sources:
+sources: 
 i used ____ to learn about ____
 '''
 
@@ -41,6 +41,7 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 OTHER = (35, 45, 200)
+YELLOW = (233, 235, 54)
 #defines what the text will look like
 def draw_text(text, size, color, x, y):
         font_name = pg.font.match_font('arial')
@@ -102,7 +103,7 @@ class Platform(Sprite):
     def __init__(self, x, y, w, h):
         Sprite.__init__(self)
         self.image = pg.Surface((w, h))
-        self.image.fill(WHITE)
+        self.image.fill(YELLOW)
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
