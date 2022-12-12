@@ -1,5 +1,5 @@
 '''
-my final project is flying bird
+my final project is...
 '''
 
 '''
@@ -10,6 +10,7 @@ i used ____ to learn about ____
 # import libraries 
 import pygame as pg
 from pygame.sprite import Sprite
+
 # built in libraries
 #import tkinter as tk
 from settings import *
@@ -24,6 +25,7 @@ import random
 # content from kids can code: http://kidscancode.org/blog/
 
 # Mr.Cozort's code
+
 #import the libraries
 
 vec = pg.math.Vector2
@@ -50,6 +52,10 @@ def draw_text(text, size, color, x, y):
         text_rect = text_surface.get_rect()
         text_rect.midtop = (x, y)
         screen.blit(text_surface, text_rect)
+
+        
+
+
 #platforms.
 platforms = []
 # sprites...
@@ -116,9 +122,30 @@ class Healthbar(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
+
+# Define the Enemy class
+class Enemy:
+  def __init__(self, x, y):
+    self.x = x
+    self.y = y
+    self.image = pg.Surface((50, 50))
+    self.image.fill(WHITE)
+    self.rect = self.image.get_rect()
+    self.rect.x = x
+    self.rect.y = y
+
+# Create an empty array to store the enemies
+enemies = []
+
+# Create a new enemy at position (100, 100)
+enemy = Enemy(100, 100)
+
+# Add the enemy to the array of enemies
+
 #puts the all_sprites and all_platforms in the pygame sprite group
 all_sprites = pg.sprite.Group()
 all_platforms = pg.sprite.Group()
+
 # init pygame and create a window
 pg.init()
 pg.mixer.init()
