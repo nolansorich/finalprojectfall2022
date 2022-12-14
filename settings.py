@@ -1,3 +1,4 @@
+import pygame as pg
 vec = pg.math.Vector2
 WIDTH = 1400
 HEIGHT = 720

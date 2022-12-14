@@ -18,6 +18,7 @@ from pygame.sprite import Sprite
 #import tkinter as tk
 from settings import *
 import random
+from sprites import *
 #from random import randint
 
 # created libraries
@@ -26,22 +27,7 @@ import random
 
 #import the libraries
 
-vec = pg.math.Vector2
-WIDTH = 1400
-HEIGHT = 720
-FPS = 30
-# player settings
-PLAYER_GRAV = 2   
-PLAYER_FRIC = 4
-SCORE = 0
-# define colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-OTHER = (35, 45, 200)
-YELLOW = (233, 235, 54)
+
 #defines what the text will look like
 def draw_text(text, size, color, x, y):
         font_name = pg.font.match_font('arial')
@@ -55,90 +41,6 @@ def draw_text(text, size, color, x, y):
 #platforms.
 platforms = []
 # sprites...
-class Player(Sprite):
-    def __init__(self):
-        Sprite.__init__(self)
-        self.image = pg.Surface((50, 50))
-        self.image.fill(RED)
-        self.rect = self.image.get_rect()
-        self.rect.center = (WIDTH/2, HEIGHT/2)
-        self.pos = vec(WIDTH/14, HEIGHT/3)
-        self.vel = vec(0,0)
-        self.acc = vec(0,0)
-        self.health = 100
-    def controls(self):
-        keys = pg.key.get_pressed()
-        #if keys[pg.K_w]:
-             #self.acc.y = -5
-        if keys[pg.K_a]:
-            self.acc.x = -5
-        #if keys[pg.K_s]:
-            #dself.acc.y = 5
-        if keys[pg.K_d]:
-            self.acc.x = 5
-        if keys[pg.K_SPACE]:
-             self.jump()
-    def jump(self):
-        #print("jump has been called...")
-        self.rect.x += 1
-        hits = pg.sprite.spritecollide(self, platforms, False)
-        self.rect.x += -1
-        if hits:
-            self.vel.y = -20
-        self.vel.y = -20
-    def update(self):
-        self.acc = vec(0,PLAYER_GRAV)
-        self.controls()
-        hits = pg.sprite.spritecollide(self, all_platforms, False)
-        if hits:
-             print("Game Over")
-        # friction
-        self.acc.x += self.vel.x * -0.1
-        self.acc.y += self.vel.y * -0.1
-        self.vel += self.acc
-        self.pos += self.vel + 0.5 * self.acc
-        # self.rect.x += self.xvel
-        # self.rect.y += self.yvel
-        self.rect.midbottom = self.pos
-#platform class
-class Platform(Sprite):
-    def __init__(self, x, y, w, h):
-        Sprite.__init__(self)
-        self.image = pg.Surface((w, h))
-        self.image.fill(YELLOW)
-        self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
-#healthbar class
-class Healthbar(Sprite):
-    def __init__(self, x, y, w, h):
-        Sprite.__init__(self)
-        self.image = pg.Surface((w, h))
-        self.image.fill(RED)
-        self.rect = self.image.get_rect()
-        self.rect.x = x
-        self.rect.y = y
-class Enemy:
-    def __init__(self, x, y, w, h, speed):
-        self.x = x
-        self.y = y
-        self.speed = speed
-        self.image = pg.Surface((w, h))
-        self.image = (WHITE)
-    def update(self):
-        # Update the position of the enemy based on its speed
-        self.x += self.speed
-        self.y += self.speed
-        
-        # If the enemy reaches the edge of the screen, reverse its direction
-        if self.x < 0 or self.x > WIDTH:
-            self.speed = -self.speed
-        if self.y < 0 or self.y > HEIGHT:
-            self.speed = -self.speed
-
-    def draw(self, screen):
-        # Draw the enemy to the screen
-        pg.draw.rect(screen, (500, 50, 300), (self.x, self.y, 50, 50))
 
 #puts the all_sprites and all_platforms in the pygame sprite group
 all_sprites = pg.sprite.Group()
