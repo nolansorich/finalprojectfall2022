@@ -45,7 +45,7 @@ platforms = []
 #puts the all_sprites and all_platforms in the pygame sprite group
 all_sprites = pg.sprite.Group()
 all_platforms = pg.sprite.Group()
-all_enemies = pg.sprite.Group()
+
 
 # init pygame and create a window
 pg.init()
@@ -56,6 +56,11 @@ clock = pg.time.Clock()
   
 # instantiate the player class
 player = Player()
+# instantiate the enemy class
+enemy = Enemy(1300, 400, 50, 100)
+
+
+all_platforms = pg.sprite.Group()
 #creates the platforms
 plat = Platform(400, 400, 50, 1400)
 plat2 = Platform(400, 0, 50, 250)
@@ -71,9 +76,12 @@ plat11 = Platform(1100, 600, 50, 900)
 platr = Platform(0, 0, 10, 720)
 platrr = Platform(1390, 10, 10, 720)
 platrrr = Platform(0, 0, 1400, 10)
-other = Platform(1300, 400, 50, 100)
+
 #adds player to all_sprites
 all_sprites.add(player)
+
+all_sprites.add(enemy)
+
 #adds platforms to all_sprites
 all_sprites.add(plat)
 all_sprites.add(plat2)
@@ -89,7 +97,7 @@ all_sprites.add(plat11)
 all_sprites.add(platr)
 all_sprites.add(platrr)
 all_sprites.add(platrrr)
-all_sprites.add(other)
+#all_sprites.add(other)
  #adds plats to all_platforms
 all_platforms.add(plat)
 all_platforms.add(plat2)
@@ -105,7 +113,7 @@ all_platforms.add(plat11)
 all_platforms.add(platr)
 all_platforms.add(platrr)
 all_platforms.add(platrrr)
-all_platforms.add(other)
+#all_platforms.add(other)
 #adds pltforms to sprites and platform group
 all_sprites.add(platforms)
 all_platforms.add(platforms)
@@ -132,8 +140,8 @@ while running:
         #if the player hits the platforms they will stay on the screen
         hits = pg.sprite.spritecollide(player, all_platforms, False)
         if hits:
-#platform 1-9, if hit, will move the player to the top of the platform
-            (plat, plat9)
+#platforms, if hit, will move the player to the top of the platform
+            all_platforms
             player.pos.y = hits[0].rect.top
             
     elif player.vel.y < 0:
