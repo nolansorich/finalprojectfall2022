@@ -1,6 +1,4 @@
-import pygame as pg
-
-# game settings 
+vec = pg.math.Vector2
 WIDTH = 1400
 HEIGHT = 720
 FPS = 30
@@ -8,9 +6,7 @@ FPS = 30
 PLAYER_GRAV = 2   
 PLAYER_FRIC = 4
 SCORE = 0
-
-vec = pg.math.Vector2
-
+# define colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)

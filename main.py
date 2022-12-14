@@ -1,16 +1,19 @@
+# Nolan Sorich
 '''
 my final project is...
 '''
 
 '''
 sources: 
-i used ____ to learn about ____
+content from kids can code: http://kidscancode.org/blog/
+
+Mr.Cozort's code
 '''
+
 
 # import libraries 
 import pygame as pg
 from pygame.sprite import Sprite
-
 # built in libraries
 #import tkinter as tk
 from settings import *
@@ -20,11 +23,6 @@ import random
 # created libraries
 #import settings
 #import sprites
-
-
-# content from kids can code: http://kidscancode.org/blog/
-
-# Mr.Cozort's code
 
 #import the libraries
 
@@ -53,8 +51,6 @@ def draw_text(text, size, color, x, y):
         text_rect.midtop = (x, y)
         screen.blit(text_surface, text_rect)
 
-        
-
 
 #platforms.
 platforms = []
@@ -69,7 +65,7 @@ class Player(Sprite):
         self.pos = vec(WIDTH/14, HEIGHT/3)
         self.vel = vec(0,0)
         self.acc = vec(0,0)
-        self.health = 1
+        self.health = 100
     def controls(self):
         keys = pg.key.get_pressed()
         #if keys[pg.K_w]:
@@ -122,29 +118,32 @@ class Healthbar(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-
-# Define the Enemy class
 class Enemy:
-  def __init__(self, x, y):
-    self.x = x
-    self.y = y
-    self.image = pg.Surface((50, 50))
-    self.image.fill(WHITE)
-    self.rect = self.image.get_rect()
-    self.rect.x = x
-    self.rect.y = y
+    def __init__(self, x, y, w, h, speed):
+        self.x = x
+        self.y = y
+        self.speed = speed
+        self.image = pg.Surface((w, h))
+        self.image = (WHITE)
+    def update(self):
+        # Update the position of the enemy based on its speed
+        self.x += self.speed
+        self.y += self.speed
+        
+        # If the enemy reaches the edge of the screen, reverse its direction
+        if self.x < 0 or self.x > WIDTH:
+            self.speed = -self.speed
+        if self.y < 0 or self.y > HEIGHT:
+            self.speed = -self.speed
 
-# Create an empty array to store the enemies
-enemies = []
-
-# Create a new enemy at position (100, 100)
-enemy = Enemy(100, 100)
-
-# Add the enemy to the array of enemies
+    def draw(self, screen):
+        # Draw the enemy to the screen
+        pg.draw.rect(screen, (500, 50, 300), (self.x, self.y, 50, 50))
 
 #puts the all_sprites and all_platforms in the pygame sprite group
 all_sprites = pg.sprite.Group()
 all_platforms = pg.sprite.Group()
+all_enemies = pg.sprite.Group()
 
 # init pygame and create a window
 pg.init()
@@ -221,11 +220,11 @@ while running:
             if event.key == pg.K_SPACE:
                 player.jump()
     
-    # updates the sprites
+    # updates the sprites/platforms
     all_sprites.update()
     all_platforms.update()
-    #updates the platforms
-       
+
+
 #if the players velocity is greater than 0 than...
     if player.vel.y > 0:
         #if the player hits the platforms they will stay on the screen
@@ -252,7 +251,9 @@ while running:
         pg.sprite.spritecollide(player, all_platforms, False)
         if hits:
             all_platforms
-            player.health -= 1
+        player.health -= 1
+
+
     ############ Draw ################
 #changes the color of the screen when the players health is less than 0 and is also the backround
     if player.health < 0:
@@ -261,14 +262,14 @@ while running:
         screen.fill(BLUE)
 #if the players health is below 0 a message will show up on the screen saying the game is over
     if player.health > 0:
-        draw_text("HEALTH: " + str(player.health), 22, RED, WIDTH / 2.5, HEIGHT / 
-20)
+        draw_text("HEALTH: " + str(player.health), 22, RED, WIDTH / 2.5, HEIGHT / 20)
     elif player.health < 0:
-        draw_text("YOU LOST!! " + str(player.health), 300, OTHER, WIDTH / 1.5, 
-HEIGHT / 20)
+        draw_text("YOU LOST!! " + str(player.health), 300, OTHER, WIDTH / 1.5, HEIGHT / 20)
     # draw all sprites
     all_sprites.draw(screen)
     
     # buffer - after drawing everything, flip display
     pg.display.flip()
+
+
 pg.quit()
