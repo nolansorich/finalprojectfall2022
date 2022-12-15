@@ -72,31 +72,31 @@ class Healthbar(Sprite):
         self.rect.y = y
 
 class Enemy:
-    def __init__(self, x, y, w, h,):
+    def __init__(self, x, y, w, h, screen):
         self.x = x
         self.y = y
         self.w = w
         self.h = h
-        #self.speed = speed
-        self.image = pg.Surface((50, 50))
-        self.image = (BLACK)
+        self.speed = 2
+        self.image = pg.Surface((self.w, self.h))
+        self.image.fill(BLACK)
+        self.screen = screen  # Store the screen object in a class attribute
+        self.draw()  # Call the draw method
+
     def update(self):
         # Update the position of the enemy based on its speed
         self.x += self.speed
         self.y += self.speed
         
-        #speed = 2
         # If the enemy reaches the edge of the screen, reverse its direction
         if self.x < 0 or self.x > WIDTH:
             self.speed = -self.speed
         if self.y < 0 or self.y > HEIGHT:
             self.speed = -self.speed
 
-    def draw(self, screen):
+    def draw(self):
         # Draw the enemy to the screen
-        pg.draw.rect(screen, (1300, 400, 50, 100), (self.x, self.y, 50, 50))
-    w = 50
-    h = 100
-    x = 1300
-    y = 400
+        pg.draw.rect(self.screen, self.image, (self.x, self.y, self.w, self.h))
+
+
 all_platforms = pg.sprite.Group()

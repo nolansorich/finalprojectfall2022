@@ -40,6 +40,7 @@ def draw_text(text, size, color, x, y):
 
 #platforms.
 platforms = []
+
 # sprites...
 
 #puts the all_sprites and all_platforms in the pygame sprite group
@@ -56,8 +57,14 @@ clock = pg.time.Clock()
   
 # instantiate the player class
 player = Player()
+
 # instantiate the enemy class
-enemy = Enemy(1300, 400, 50, 100)
+enemy = Enemy(screen, 1300, 400, 50, 100)
+
+# add enemy to the all_sprites group
+all_sprites.add(enemy)
+
+
 
 
 all_platforms = pg.sprite.Group()
