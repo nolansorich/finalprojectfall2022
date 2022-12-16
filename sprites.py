@@ -85,8 +85,13 @@ class Enemy(pg.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         self.is_hit = False
-        self.health = 100
-        
+        self.health = 1
+
+    def hit(self):
+        self.health -= 1
+        if self.health <= 0:
+            self.is_dead = True
+
     def draw(self, surface):
         surface.blit(self.image, self.rect)
         

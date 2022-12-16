@@ -1,12 +1,10 @@
 # Nolan Sorich
-'''
-my final project is...
-'''
+
 
 '''
 sources: 
 content from kids can code: http://kidscancode.org/blog/
-
+Youtube
 Mr.Cozort's code
 '''
 
@@ -67,7 +65,8 @@ all_sprites = pg.sprite.Group()
 
 # Create an instance of the Enemy class
 enemy = Enemy(50, 50, 1250, 200)
-
+enemies = pg.sprite.Group()
+enemies.add(enemy)
 # Add the enemy to the sprite group
 all_sprites.add(enemy)
 
@@ -147,39 +146,43 @@ while running:
     # updates the sprites/platforms
     all_sprites.update()
     all_platforms.update()
-
+    
 
 #if the players velocity is greater than 0 than...
     if player.vel.y > 0:
         #if the player hits the platforms they will stay on the screen
-        hits = pg.sprite.spritecollide(player, all_platforms, False)
+        hits = pg.sprite.spritecollide(player, enemies, all_platforms, False)
         if hits:
 #platforms, if hit, will move the player to the top of the platform
-            all_platforms
+            all_platforms, enemy
             player.pos.y = hits[0].rect.top
             
     elif player.vel.y < 0:
-        hits = pg.sprite.spritecollide(player, all_platforms, False)
+        hits = pg.sprite.spritecollide(player, enemies, all_platforms, False)
         if hits:
-            all_platforms
+            all_platforms, enemy
             player.rect.top = hits[0].rect.bottom
             
 #if the player hits the platforms they stay(False)
     if  hits: 
-        pg.sprite.spritecollide(player, all_platforms, False)
+        hits = pg.sprite.spritecollide(player, enemies, all_platforms, False)
 #subtracts 1 everytime player hits a platform
         if hits:
-            all_platforms
+            all_platforms, enemy
         player.health -= 1    
+        enemy.health -= 1
     elif  hits:
-        pg.sprite.spritecollide(player, all_platforms, False)
+        hits = pg.sprite.spritecollide(player, enemies, all_platforms, False)
         if hits:
-            all_platforms
+            all_platforms, enemy
         player.health -= 1
-
-
-        
-
+        enemy.health -= 1
+    if player.rect.colliderect(enemy.rect):
+        enemy.hit()
+    if enemy.health <= 0 or enemy.is_hit:
+        enemy.kill()
+    if enemy.health <= 0:
+        enemy.color = BLUE
 
     ############ Draw ################
 #changes the color of the screen when the players health is less than 0 and is also the backround
@@ -194,9 +197,34 @@ while running:
         draw_text("YOU LOST!! " + str(player.health), 300, OTHER, WIDTH / 1.5, HEIGHT / 20)
     # draw all sprites
     all_sprites.draw(screen)
+
+    
+    if enemy.health < 0:
+        screen.fill(RED)
+    elif player.health > 0:
+        screen.fill(BLUE)
+#if the players health is below 0 a message will show up on the screen saying the game is over
+    if player.health > 0:
+        draw_text("HEALTH: " + str(player.health), 22, RED, WIDTH / 2.5, HEIGHT / 20)
+    elif player.health < 0:
+        draw_text("YOU LOST!! " + str(player.health), 300, OTHER, WIDTH / 1.5, HEIGHT / 20)
+    # draw all sprites
+    all_sprites.draw(screen)
+    
     
     # buffer - after drawing everything, flip display
     pg.display.flip()
+
+   
+    
+
+
+
+
+
+
+
+
 
 
 pg.quit()
