@@ -75,16 +75,16 @@ all_sprites.draw(screen)
 
 all_platforms = pg.sprite.Group()
 #creates the platforms
-plat = Platform(400, 400, 50, 1400)
-plat2 = Platform(400, 0, 50, 250)
+plat = Platform(400, 250, 50, 1400)
+plat2 = Platform(400, -100, 50, 250)
 plat3 = Platform(700, 600, 50, 200)
-plat4 = Platform(700, 0, 50, 400)
+plat4 = Platform(700, -100, 50, 400)
 plat5 = Platform(900, 400, 50, 800 )
-plat6 = Platform(900, 0, 50, 250)
+plat6 = Platform(900, -100, 50, 400)
 plat7 = Platform(200, 200, 50, 600)
-plat8 = Platform(200, 0, 50, 10)
-plat9 = Platform(0, 720, 1400, 10)
-plat10 = Platform(1100, 0, 50, 400)
+plat8 = Platform(200, -100, 50, 200)
+plat9 = Platform(0, 720, 1400, 100)
+plat10 = Platform(1100, -100, 50, 600)
 plat11 = Platform(1100, 600, 50, 900)
 platr = Platform(0, 0, 10, 720)
 platrr = Platform(1390, 10, 10, 720)
@@ -177,13 +177,12 @@ while running:
 
     ############ Draw ################
 # changes backround to White when enemy health
-    if enemy.health < 0:
+    if player:
+        hits: enemy
         screen.fill(WHITE)
-        draw_text("WINNER!! " + str(player.health), 300, OTHER, WIDTH / 1.5, HEIGHT / 20)
+        draw_text("Hit the Black Square to Win!! " + str(player.health), 22, OTHER, WIDTH / 1.1, HEIGHT / 20)
 
 # If the enemy's health is greater than or equal to 0, the screen will be filled with blue
-    else:
-        screen.fill(BLUE)
 
 # Check the player's health and fill the screen with red if it is less than 0
     if player.health < 0:
