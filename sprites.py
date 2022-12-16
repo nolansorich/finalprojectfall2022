@@ -17,7 +17,7 @@ class Player(Sprite):
         self.pos = vec(WIDTH/14, HEIGHT/3)
         self.vel = vec(0,0)
         self.acc = vec(0,0)
-        self.health = 100
+        self.health = 2
     def controls(self):
         keys = pg.key.get_pressed()
         #if keys[pg.K_w]:
