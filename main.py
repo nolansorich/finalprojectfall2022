@@ -59,17 +59,17 @@ player = Player()
 # Create a sprite group
 all_sprites = pg.sprite.Group()
 
-# Create an instance of the Enemy class
 # Create a sprite group
 all_sprites = pg.sprite.Group()
 
 # Create an instance of the Enemy class
 enemy = Enemy(50, 50, 1250, 200)
-enemies = pg.sprite.Group()
-enemies.add(enemy)
-# Add the enemy to the sprite group
-all_sprites.add(enemy)
 
+
+# Add the enemy to the sprite group
+enemies = pg.sprite.Group()
+all_sprites.add(enemy)
+enemies.add(enemy)
 # Draw the sprite group on the surface
 all_sprites.draw(screen)
 
@@ -199,5 +199,5 @@ while running:
 # Buffer - after drawing everything, flip display
     pg.display.flip()
 
-
+# Quits
 pg.quit()

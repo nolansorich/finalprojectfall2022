@@ -1,12 +1,11 @@
 import pygame as pg
 from pygame.sprite import Sprite
-# built in libraries
-#import tkinter as tk
 from settings import *
 import random
 from sprites import *
-platforms = []
 
+platforms = []
+# Player Class
 class Player(Sprite):
     def __init__(self):
         Sprite.__init__(self)
@@ -20,11 +19,11 @@ class Player(Sprite):
         self.health = 1
     def controls(self):
         keys = pg.key.get_pressed()
-        #if keys[pg.K_w]:
+        # If keys[pg.K_w]:
              #self.acc.y = -5
         if keys[pg.K_a]:
             self.acc.x = -5
-        #if keys[pg.K_s]:
+        # If keys[pg.K_s]:
             #dself.acc.y = 5
         if keys[pg.K_d]:
             self.acc.x = 5
@@ -44,15 +43,14 @@ class Player(Sprite):
         hits = pg.sprite.spritecollide(self, all_platforms, False)
         if hits:
              print("Game Over")
-        # friction
+        # Friction
         self.acc.x += self.vel.x * -0.1
         self.acc.y += self.vel.y * -0.1
         self.vel += self.acc
         self.pos += self.vel + 0.5 * self.acc
-        # self.rect.x += self.xvel
-        # self.rect.y += self.yvel
+        
         self.rect.midbottom = self.pos
-#platform class
+# Platform class
 class Platform(Sprite):
     def __init__(self, x, y, w, h):
         Sprite.__init__(self)
@@ -61,7 +59,7 @@ class Platform(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-#healthbar class
+# Healthbar class
 class Healthbar(Sprite):
     def __init__(self, x, y, w, h):
         Sprite.__init__(self)
@@ -70,7 +68,7 @@ class Healthbar(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-
+# Enemy Class
 class Enemy(pg.sprite.Sprite):
     def __init__(self, w, h, x, y, color=(0,0,0)):
         super().__init__()
@@ -86,15 +84,15 @@ class Enemy(pg.sprite.Sprite):
         self.rect.y = y
         self.is_hit = False
         self.health = 1
-
+# Decreases the enemies health by 1 and set is_dead to True if health is 0 or less.
     def hit(self):
         self.health -= 1
         if self.health <= 0:
             self.is_dead = True
-
+# Draws the object on the screen
     def draw(self, surface):
         surface.blit(self.image, self.rect)
-        
+# Makes is_hit True      
     def hit(self):
         self.is_hit = True
 
@@ -123,33 +121,6 @@ class Enemy(pg.sprite.Sprite):
 
     # Draw the enemy
         enemy.draw(screen)
-'''
-class Enemy:
-    def __init__(self, x, y, w, h, screen):
-        self.x = x
-        self.y = y
-        self.w = w
-        self.h = h
-        self.speed = 2
-        self.image = pg.Surface((self.w, self.h))
-        self.image.fill(BLACK)
-        self.screen = screen  # Store the screen object in a class attribute
-        self.draw()  # Call the draw method
 
-    def update(self):
-        # Update the position of the enemy based on its speed
-        self.x += self.speed
-        self.y += self.speed
-        
-        # If the enemy reaches the edge of the screen, reverse its direction
-        if self.x < 0 or self.x > WIDTH:
-            self.speed = -self.speed
-        if self.y < 0 or self.y > HEIGHT:
-            self.speed = -self.speed
-
-    def draw(self):
-        # Draw the enemy to the screen
-        pg.Surface = pg.draw.rect(self.screen, self.image, (self.x, self.y, self.w, self.h))
-
-'''
+# adds all paltforms to the sprites
 all_platforms = pg.sprite.Group()
