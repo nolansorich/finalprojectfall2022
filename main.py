@@ -58,14 +58,21 @@ clock = pg.time.Clock()
 # instantiate the player class
 player = Player()
 
-# instantiate the enemy class
-enemy = Enemy(screen, 1300, 400, 50, 100)
+# Create a sprite group
+all_sprites = pg.sprite.Group()
 
-# add enemy to the all_sprites group
+# Create an instance of the Enemy class
+# Create a sprite group
+all_sprites = pg.sprite.Group()
+
+# Create an instance of the Enemy class
+enemy = Enemy(50, 50, 1250, 200)
+
+# Add the enemy to the sprite group
 all_sprites.add(enemy)
 
-
-
+# Draw the sprite group on the surface
+all_sprites.draw(screen)
 
 all_platforms = pg.sprite.Group()
 #creates the platforms
@@ -169,6 +176,9 @@ while running:
         if hits:
             all_platforms
         player.health -= 1
+
+
+        
 
 
     ############ Draw ################

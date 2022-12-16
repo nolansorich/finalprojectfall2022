@@ -71,6 +71,54 @@ class Healthbar(Sprite):
         self.rect.x = x
         self.rect.y = y
 
+class Enemy(pg.sprite.Sprite):
+    def __init__(self, w, h, x, y, color=(0,0,0)):
+        super().__init__()
+        self.w = w
+        self.h = h
+        self.x = x
+        self.y = y
+        self.color = color
+        self.image = pg.Surface((w, h))
+        self.image.fill(color)
+        self.rect = self.image.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+        self.is_hit = False
+        self.health = 100
+        
+    def draw(self, surface):
+        surface.blit(self.image, self.rect)
+        
+    def hit(self):
+        self.is_hit = True
+
+# Initialize Pygame
+        pg.init()
+
+# Set the window size
+        window_size = (1400, 720)
+
+# Create the window
+        screen = pg.display.set_mode(window_size)
+
+# Set the window title
+
+# Create an instance of the Enemy class
+        enemy = Enemy(100, 50, 1350, 50)
+
+# Run the game loop
+        running = True
+        while running:
+    # Handle events
+         for event in pg.event.get():
+            if event.type == pg.QUIT:
+             running = False
+
+
+    # Draw the enemy
+        enemy.draw(screen)
+'''
 class Enemy:
     def __init__(self, x, y, w, h, screen):
         self.x = x
@@ -96,7 +144,7 @@ class Enemy:
 
     def draw(self):
         # Draw the enemy to the screen
-        pg.draw.rect(self.screen, self.image, (self.x, self.y, self.w, self.h))
+        pg.Surface = pg.draw.rect(self.screen, self.image, (self.x, self.y, self.w, self.h))
 
-
+'''
 all_platforms = pg.sprite.Group()
